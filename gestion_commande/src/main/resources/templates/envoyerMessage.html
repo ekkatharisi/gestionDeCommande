@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="ISO-8859-1" />
+<title></title>
+</head>
+<body>
+
+
+	<section layout:fragment="content">
+
+		<div class="container">
+
+			<form method="GET" th:action="@{/envoyerMsg}">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-heading">envoyer un message</div>
+						<div class="panel-body">
+
+							<div class="row">
+								Destinataire : <select name="dest">
+									<option value="f">service financier</option>
+									<option value="a">service d'achat</option>
+									<option value="s">service de stock</option>
+								</select>
+							</div>
+							<div class="row">
+								<input type="sujet" name="sujet" placeholder="sujet de message " />
+							</div>
+							<div class="row">
+								<textarea name="msg" rows="10" cols="70"
+									placeholder="corp du message"></textarea>
+							</div>
+
+
+						</div>
+						<div class="panel-footer">
+							<input type="submit" class="btn btn-default" value="enregistrer" />
+						</div>
+					</div>
+				</div>
+			</form>
+
+		</div>
+
+	</section>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="ISO-8859-1" />
+<title></title>
+</head>
+<body>
+
+
+	<section layout:fragment="content">
+
+		<div class="container">
+			
+			
+			
+			<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">id</th>
+								<th scope="col">nom</th>
+								<th scope="col">address</th>
+								<th scope="col">telephone</th>
+								<th scope="col">cin</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="f:${fournisseurs}" >
+								<td><label th:text="${f.id}"></label></td>
+								<td><label th:text="${f.nom}"></label></td>
+								<td><label th:text="${f.Address}"></label></td>
+								<td><label th:text="${f.telephone}"></label></td>
+								<td><label th:text="${f.CIN}"></label></td>
+							</tr>
+						</tbody>
+			</table>
+
+		</div>
+
+	</section>
+</body>
+</html>

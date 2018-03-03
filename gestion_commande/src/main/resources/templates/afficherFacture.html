@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="ISO-8859-1" />
+<title></title>
+</head>
+<body>
+
+
+	<section layout:fragment="content">
+
+		<div class="container">
+
+			<div th:if="${msgVal}" class="alert alert-success">la facture
+				corespond au bon a payer , vous pouvez rediger le cheque de paiement</div>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">id</th>
+						<th scope="col">nom fournisseur</th>
+						<th scope="col">produits</th>
+						<th scope="col">date livraison</th>
+						<th scope="col">Totale a payer</th>
+						<th scope="col">etat de la facture</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<form method="get" th:action="@{/reglerFacture}">
+						<td><label th:text="${facture.id}"></label></td>
+						<td><label th:text="${facture.fournisseur.nom}"></label></td>
+						<td><ul class="list-group">
+								<li class="list-group-item" th:each="l:${facture.ligneFacture}">
+									<label th:text="${l.produit.nom}"></label> / <label
+									th:text="${l.produit.prix}"></label>
+								</li>
+							</ul></td>
+						<td><label th:text="${facture.livraison.dateLivraison}"></label></td>
+						<td><label th:text="${facture.totale}"></label></td>
+						<td>
+							<input type="hidden" name="idFac" th:value="${facture.id}"/>
+							<input th:if="${!facture.status}" type="submit"
+							value="regler la facture" />
+							<div th:if="${facture.status}">facture reglee</div></td>
+						</form>
+					</tr>
+
+
+				</tbody>
+			</table>
+
+		</div>
+
+	</section>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="ISO-8859-1" />
+<title></title>
+</head>
+<body>
+
+
+	<section layout:fragment="content">
+
+		<div class="container">
+			<center>
+				<form method="GET" th:action="@{/modFrns2}">
+					<div class="col-md-8">
+						<div class="panel panel-default">
+							<div class="panel-heading">Ajouter un fournisseur</div>
+							<div class="panel-body">
+								<div class="row hidden">
+									<input type="text" name="id" th:value="${frns.id}" />
+								</div>
+								<div class="row">
+									<input type="text" name="nom" th:value="${frns.nom}" />
+								</div>
+								<div class="row">
+									<input type="text" name="ad" th:value="${frns.Address}" />
+								</div>
+								<div class="row">
+									<input type="text" name="tel" th:value="${frns.telephone}" />
+								</div>
+								<div class="row">
+									<input type="text" name="cin" th:value="${frns.CIN}" />
+								</div>
+							</div>
+							<div class="panel-footer">
+								<input type="submit" class="btn btn-default" value="enregistrer" />
+							</div>
+						</div>
+					</div>
+				</form>
+			</center>
+		</div>
+
+	</section>
+</body>
+</html>

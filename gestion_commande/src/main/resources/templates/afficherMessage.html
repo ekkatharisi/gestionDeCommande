@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="ISO-8859-1" />
+<title></title>
+</head>
+<body>
+
+
+	<section layout:fragment="content">
+
+		<div class="container">
+			<div class="col-md-offset-2 col-md-8">
+				<div class="panel panel-default">
+					<div class="panel-heading">message numero : <label th:text="${msg.id}"></label></div>
+					<div class="panel-body">
+						
+						<div class="row">
+							<div class="col-md-4">Emeteur :</div>
+							<div class="col-md-6"><label th:text="${msg.emeteur}"></label></div>
+						</div>
+						<div class="row">
+							<div class="col-md-4">Sujet :</div>
+							<div class="col-md-6"><label th:text="${msg.sujet}"></label></div>
+						</div>
+						<div class="row">
+							corps du message :
+							<textarea th:text="${msg.message}" rows="10" cols="70" style="width:100%;" readonly="readonly"></textarea>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>

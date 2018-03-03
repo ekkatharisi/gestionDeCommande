@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="ISO-8859-1" />
+<title></title>
+</head>
+<body>
+
+
+	<section layout:fragment="content">
+
+		<div class="container">
+
+
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">id</th>
+						<th scope="col">nom fournisseur</th>
+						<th scope="col">date de commande</th>
+						<th scope="col">produits acheter</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="c:${commandes}">
+						<td><label th:text="${c.id}"></label></td>
+						<td><label th:text="${c.fournisseur.nom}"></label></td>
+						<td><label th:text="${c.dateCommande}"></label></td>
+						<td><ul class="list-group">
+								<li class="list-group-item" th:each="l:${c.ligneCommande}">
+									nom produit : <label th:text="${l.produit.nom}"></label> | prix : <label th:text="${l.produit.prix}"></label> | quantite <label th:text="${l.quantite}"></label>
+								</li>
+							</ul></td>
+
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+	</section>
+</body>
+</html>

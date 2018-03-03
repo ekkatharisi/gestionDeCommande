@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="ISO-8859-1" />
+<title></title>
+</head>
+<body>
+
+
+	<section layout:fragment="content">
+		<div class="container">
+
+			<div class="row">
+				
+				<div th:if="${compteConnecte==null}"
+					class="col-md-offset-3 col-md-6">
+
+					<div th:if="${msgErr}" class="alert alert-danger">l'email ou
+						le mot de pass est incorecte</div>
+					<form method="get" th:action="@{/auth}">
+						<div class="panel panel-default">
+							<div class="panel-heading">Authentification</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-4">email :</div>
+									<div class="col-md-8">
+										<input type="text" name="email" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-4">password :</div>
+									<div class="col-md-8">
+										<input type="password" name="pw" />
+									</div>
+								</div>
+							</div>
+							<div class="panel-footer">
+								<input type="submit" class="btn btn-default" value="connexion" />
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<div class="row" th:if="${compteConnecte!=null}">
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">boite de reception de commande</div>
+							<div class="panel-body">
+								<form th:action="@{/affCmd.html}" method="get">
+									<ul class="list-group">
+										<li class="list-group-item"
+											th:each="c:${compteConnecte.boiteBonDeCommande}">
+											<center>
+												<label th:text="${c.id}"></label> / <label
+													th:text="${c.fournisseur.nom}"></label><input type="hidden"
+													name="id" th:value="${c.id}" /><input type="submit"
+													value="voir le bon de commande" />
+											</center>
+										</li>
+									</ul>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">boite de reception de message</div>
+							<div class="panel-body">
+								<form th:action="@{/affMsg.html}" method="get">
+									<ul class="list-group">
+										<li class="list-group-item"
+											th:each="c:${compteConnecte.boiteMessage}">
+											<center>
+												<label th:text="${c.sujet}"></label><input type="hidden"
+													name="id" th:value="${c.id}" /> <input type="submit"
+													value="voir le message" />
+											</center>
+										</li>
+									</ul>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row"
+					th:if="${compteConnecte!=null and compteConnecte.role=='f'}">
+					<div class="col-offset-md-3 col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">boite de reception de facture</div>
+							<div class="panel-body">
+								<ul class="list-group">
+									<li class="list-group-item" th:each="f:${factures}">
+										<form method="get" th:action="@{/affFacture}">
+											id facture : <label th:text="${f.id}"></label> | nom
+											fournissseur : <label th:text="${f.fournisseur.nom}"></label>
+											| date livraison : <label
+												th:text="${f.livraison.dateLivraison}"></label> <input
+												type="hidden" name="id" th:value="${f.id}" /> 
+												<input  type="submit" value="voir la facture" />
+												
+													
+										</form>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

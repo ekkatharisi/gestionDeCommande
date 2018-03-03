@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="ISO-8859-1" />
+<title></title>
+</head>
+<body>
+
+
+	<section layout:fragment="content">
+
+		<div class="container">
+
+
+			<div th:if="${msgVal}" class="alert alert-success">la livraison
+				est conforme a la commande</div>
+			<div th:if="${msgErr}" class="alert alert-danger">la livraison
+				n'est pas conforme a la commande</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">id</th>
+						<th scope="col">nom fournisseur</th>
+						<th scope="col">date Livraison</th>
+						<th scope="col">numero de commande</th>
+						<th scope="col">date de commande</th>
+						<th scope="col">marchandise livree</th>
+						<th scope="col">status / verfication</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="v:${livraisons}">
+						<form method="get" th:action="@{/verif}">
+						<td><label th:text="${v.id}"></label><input type="hidden"
+							name="idLiv" th:value="${v.id}" /></td>
+						<td><label th:text="${v.fournisseur.nom}"></label></td>
+						<td><label th:text="${v.dateLivraison}"></label></td>
+						<td><label th:text="${v.commande.id}"></label><input
+							type="hidden" name="idCmd" th:value="${v.commande.id}" /></td>
+						<td><label th:text="${v.commande.dateCommande}"></label></td>
+						<td><ul class="list-group">
+								<li class="list-group-item" th:each="l:${v.ligneLivraison}">
+									nom produit : <label th:text="${l.produit.nom}"></label> | prix
+									: <label th:text="${l.produit.prix}"></label> | quantite <label
+									th:text="${l.quantite}"></label>
+								</li>
+							</ul></td>
+						<td>
+							<div th:if="${v.status==null}">
+								<input type="submit" value="verifier la livraison" />
+							</div>
+							<div th:if="${v.status!=null and v.status=='a'}">accepte</div>
+							<div th:if="${v.status!=null and v.status=='r'}">refuse</div>
+						</td>
+						</form>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+	</section>
+</body>
+</html>

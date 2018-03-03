@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="ISO-8859-1" />
+<title></title>
+</head>
+<body>
+
+
+	<section layout:fragment="content">
+		<div class="container">
+
+			<div th:if="${msgErrRef}" class="alert alert-danger">Error : la
+				livraison de la marchandise n est pas encore accepte ou est refuse ,
+				consulter le service de stock</div>
+			<div th:if="${msgErrCom}" class="alert alert-danger">Error : le
+				bon a payer ne corespends pas a la facture</div>
+			<div th:if="${msgErrTot}" class="alert alert-danger">Error : le
+				totale de la facture ne coresponds pas a au totale de bon a payer</div>
+			<div class="row">
+
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">Bon a payer</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-4">date livraison :</div>
+								<div class="col-md-8">
+									<label th:text="${l.dateLivraison}"></label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">nom fournisseur :</div>
+								<div class="col-md-8">
+									<label th:text="${l.fournisseur.nom}"></label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">commande :</div>
+								<div class="col-md-8">
+									id : <label th:text="${l.commande.id}"></label> | effectuer le : <label
+										th:text="${l.commande.dateCommande}"></label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">status :</div>
+								<div class="col-md-8">
+									<div th:if="${l.status==null}">pas encore verifier</div>
+									<div th:if="${l.status!=null and l.status=='a'}">accepte</div>
+									<div th:if="${l.status!=null and l.status=='r'}">refuse</div>
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-md-4">produit livree :</div>
+								<div class="col-md-8">
+									<ul class="list-group">
+										<li class="list-group-item" th:each="ll:${l.ligneLivraison}">
+											nom produit : <label th:text="${ll.produit.nom}"></label> |
+											prix : <label th:text="${ll.produit.prix}"></label> |
+											quantite <label th:text="${ll.quantite}"></label>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">totale livree :</div>
+								<div class="col-md-8">
+									<label th:text="${totale}"></label>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">Facture</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-4">id facture :</div>
+								<div class="col-md-8">
+									<label th:text="${f.id}"></label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">nom fournisseur :</div>
+								<div class="col-md-8">
+									<label th:text="${f.fournisseur.nom}"></label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">produits :</div>
+								<div class="col-md-8">
+									<ul class="list-group">
+										<li class="list-group-item" th:each="ll:${f.ligneFacture}">
+											nom produit : <label th:text="${ll.produit.nom}"></label> |
+											prix : <label th:text="${ll.produit.prix}"></label> |
+											quantite <label th:text="${ll.quantite}"></label>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">totale facturee :</div>
+								<div class="col-md-8">
+									<label th:text="${f.totale}"></label>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+	</section>
+</body>
+</html>

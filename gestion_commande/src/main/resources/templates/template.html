@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8" />
+<title>Insert title here</title>
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Cookie" />
+<link rel="stylesheet" href="assets/fonts/font-awesome.min.css" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+<link rel="stylesheet" href="assets/css/bootstrap-social.css" />
+<link rel="stylesheet" href="assets/css/Pretty-Footer.css" />
+</head>
+<body>
+
+	<header>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand navbar-link" href="#"></a>
+					<button class="navbar-toggle collapsed" data-toggle="collapse"
+						data-target="#navcol-1">
+						<span class="sr-only">gestion commandes</span><span
+							class="icon-bar"></span><span class="icon-bar"></span><span
+							class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="navcol-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li role="presentation"><a th:href="@{/}"
+							class="btn btn-default">home</a></li>
+						<li th:if="${compteConnecte!=null and compteConnecte.role=='a'}" ><div class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button"
+									data-toggle="dropdown">
+									Gestion Fournisseur <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a th:href="@{/ajFrns.html}">ajouter fournisseur</a></li>
+									<li><a th:href="@{/modFrns1.html}">modifier
+											fournisseur</a></li>
+									<li><a th:href="@{/supFrns.html}">supprimer
+											fournisseur</a></li>
+									<li><a th:href="@{/consulterFrns.html}">consulter
+											fournisseur</a></li>
+
+								</ul>
+							</div></li>
+						<li th:if="${compteConnecte!=null and compteConnecte.role=='a'}"><div class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button"
+									data-toggle="dropdown">
+									Gestion Commande <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a th:href="@{/consulterCmd.html}">consulter
+											commande</a></li>
+									<li><a th:href="@{/ajCmd.html}">creer bon de commande</a></li>
+
+								</ul>
+							</div></li>
+							<li th:if="${compteConnecte!=null and compteConnecte.role=='s'}"><div class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button"
+									data-toggle="dropdown">
+									Gestion Livraison <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a th:href="@{/consulterLiv.html}">consulter
+											Livraison</a></li>
+									<li><a th:href="@{/ajLiv.html}">creer bon de Livraison</a></li>
+
+								</ul>
+							</div></li>
+						<li th:if="${compteConnecte==null}"><a
+							th:href="@{/register.html}" class="btn btn-default">inscription</a></li>
+						<li th:if="${compteConnecte!=null}"><div class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button"
+									data-toggle="dropdown">
+									envoyer <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a th:href="@{/envoyerCmd.html}">envoye un bon
+											de commande</a></li>
+									<li><a th:href="@{/envoyerMsg.html}">envoye un message</a></li>
+
+								</ul>
+							</div></li>
+						<li th:if="${compteConnecte!=null}"><a
+							th:href="@{/deconnexion}" class="btn btn-default">deconnexion</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+	</header>
+
+
+	<section layout:fragment="content"></section>
+
+
+
+	<footer>
+		<div class="row">
+			<div class="col-md-3 col-sm-6 footer-navigation">
+				<h3>
+					<a href="#"> FreeHost </a>
+				</h3>
+				<p class="links">
+					<strong> · </strong><a href="#">login</a><strong> · </strong><a
+						href="#">Pricing</a><strong> · </strong><a href="#">Faq</a><strong>
+					</strong>
+				</p>
+				<p class="company-name">Company Name © 2015</p>
+			</div>
+			<div class="col-md-5 col-sm-6 footer-contacts">
+				<div>
+					<span class="fa fa-map-marker footer-contacts-icon"> </span>
+					<p>
+						<span class="new-line-span">adresse local sraMaroc</span>casablanca
+						, maroc
+					</p>
+				</div>
+				<div>
+					<i class="fa fa-phone footer-contacts-icon"></i>
+					<p class="footer-center-info email text-left">numero sraMaroc</p>
+				</div>
+				<div>
+					<i class="fa fa-envelope footer-contacts-icon"></i>
+					<p>adresse email sraMaroc</p>
+				</div>
+			</div>
+			<div class="clearfix visible-sm-block"></div>
+			<div class="col-md-4 footer-about">
+				<h4>About FreeHost</h4>
+				<p>Lorem ipsum dolor sit amet, consectateur adispicing elit.
+					Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.</p>
+				<div class="social-links social-icons">
+					<a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
+						class="fa fa-twitter"></i></a><a href="#"><i
+						class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-github"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/login.js"></script>
+	<script src="assets/js/facebook.js"></script>
+
+</body>
+</html>

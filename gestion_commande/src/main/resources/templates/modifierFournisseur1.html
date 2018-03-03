@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="ISO-8859-1" />
+<title></title>
+</head>
+<body>
+
+
+	<section layout:fragment="content">
+
+		<div class="container">
+			<center>
+
+				<form method="get" th:action="@{/modFrns1}">
+					<div class="form-group">
+						<select class="form-control" id="sel1" name="frns">
+							<option selected="selected" value="0">== selectionnre
+								un founisseur SVP ==</option>
+							<option th:each="f:${fournisseurs}" th:value="${f.id}"><label
+									th:text="${f.nom}"></label>
+							</option>
+						</select>
+					</div>
+					<input type="submit" class="btn btn-default"
+										value="selectionner fournisseur" />
+				</form>
+			</center>
+
+		</div>
+
+	</section>
+</body>
+</html>
